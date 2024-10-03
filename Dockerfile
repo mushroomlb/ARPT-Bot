@@ -1,7 +1,7 @@
-FROM ubuntu
+FROM ubuntu:20.04
 
 RUN apt-get update
-RUN apt-get install sudo
+RUN apt-get install sudo -y
 RUN sudo apt-get update
 RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 RUN echo 'Asia/Shanghai' >/etc/timezone
@@ -30,6 +30,10 @@ RUN mv /nginx.conf /etc/nginx/
 
 RUN mkdir /root/.aria2
 COPY config /root/.aria2/
+
+RUN cd /root/.aria2
+
+
 RUN pip3 install --upgrade pip
 
 RUN sudo apt-get install gcc libffi-dev libssl-dev  -y
